@@ -1,0 +1,29 @@
+{
+	"protocol": "grpc",
+	"port": 5050,
+	"loglevel": "debug",
+	"recordRequests": true,
+	"_note_services": "need the name of the package, service and protofile location for this to load",
+	"services": {
+		"example.ExampleService": {
+			"file": "./protos/example.proto"
+		}
+	},
+	"options": {
+		"protobufjs": {
+			"_note": "any options to protobufjs",
+			"includeDirs": ""
+		}
+	},
+	"stubs": [{
+		"predicates": [{
+			"contains": {
+				"path": "UnaryUnary"
+			},
+			"caseSensitive": false
+		}],
+    "responses": [{
+        "inject": "<%- stringify(filename, './01_grpc_unary_unary.ejs') %>"
+     }]
+	}]
+}

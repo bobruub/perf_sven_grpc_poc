@@ -1,0 +1,13 @@
+function (request, state, logger) {
+// log details
+	var logString = '01_grpc_unary_unary';
+	console.log("------------------->>");
+	console.log("request.peer: " + request.peer);
+	console.log(Object.values(request));
+	console.log("gRPC - " + logString);
+	var response = '{"value": {"id": 100,"data": "mock response"},"metadata": {"initial": {"metadata-initial-key": "metadata-initial-value"},"trailing": {"metadata-trailing-key": "metadata-trailing-value"}}}';
+	console.log("gRPC - " + response);
+	console.log("-------------------");
+	var responseJson = JSON.parse(response);
+	return responseJson;
+}
