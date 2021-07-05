@@ -11,7 +11,7 @@ RUN apk update \
 
 RUN apk add git
 
-ENV MOUNTEBANK_VERSION=1.15.0
+ENV MOUNTEBANK_VERSION=2.4.0
 
 RUN cd /usr/lib/node_modules; npm install -g mountebank@${MOUNTEBANK_VERSION} --production \
  && npm cache clean --force 2>/dev/null \
@@ -23,11 +23,6 @@ RUN cd /usr/lib/node_modules; npm install -g mountebank@${MOUNTEBANK_VERSION} --
  && npm install sax \
  && npm install xmlbuilder
 
-RUN cd /tmp \
- && git clone https://github.com/cbrz/mountebank-grpc \
- && npm install
-
-RUN mkdir /tmp/perf_sven_grpc_test
-COPY ./protos/* /tmp/perf_sven_grpc_test/protos
-COPY ./grpc_impostor.ejs /tmp/perf_sven_grpc_test/grpc_impostor.ejs
-COPY ./* /tmp/perf_sven_grpc_test/
+RUN mkdir /tmp/perf_sven_grpc_poc
+RUN cd /tmp/perf_sven_grpc_poc
+COPY ./* /tmp/perf_sven_grpc_poc
